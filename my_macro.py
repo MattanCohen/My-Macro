@@ -58,6 +58,7 @@ def tapWithCmd(key):
     time.sleep(0.2)
     k = Controller()
     k.press(Key.cmd)
+    time.sleep(0.2)
     k.tap(key)
     k.release(Key.cmd)
 
@@ -114,16 +115,18 @@ def isF12(event):       return event.key == Key.f12
 def openLink(url):
     webbrowser.open(url)
     time.sleep(1)
-
+def openChrome(): openLink('HTTP:')
 def openMoodle():    openLink('https://moodle.bgu.ac.il/moodle/local/mydashboard/')
-def openMyButtons(): openLink('https://opsidezi.wixsite.com/my-useful-links')
+def openMyButtons(): 
+    if (not isChromeRunning()): openChrome()
+    else: openLink('https://opsidezi.wixsite.com/my-useful-links')
 
 def login():
     for i in range(9): tap(Key.tab)
     tap(Key.enter)
 
 def loginSameWindow():
-    if (not isChromeRunning()): openLink('HTTP:')
+    if (not isChromeRunning()): openChrome()
     openMoodle()
     openMyButtons()
     # wait for moodle to load in background

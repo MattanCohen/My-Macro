@@ -118,8 +118,13 @@ def openLink(url):
 def openChrome(): openLink('HTTP:')
 def openMoodle():    openLink('https://moodle.bgu.ac.il/moodle/local/mydashboard/')
 def openMyButtons(): 
-    if (not isChromeRunning()): openChrome()
-    else: openLink('https://opsidezi.wixsite.com/my-useful-links')
+    openedChrome = False
+    if (not isChromeRunning()): 
+        openChrome()
+        openedChrome = True
+    openLink('https://opsidezi.wixsite.com/my-useful-links')
+    if openedChrome:
+        closeTab(1)
 
 def login():
     for i in range(9): tap(Key.tab)

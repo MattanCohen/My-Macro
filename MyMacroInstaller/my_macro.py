@@ -204,27 +204,28 @@ with keyboard.Events() as events:
         #     print ({isHolding: flag for isHolding, flag in holdFlags.items() if flag == True})
 # ----------------------------------------------------
         # # check if alt ctrl tag is pressed
+        if (isRelease(event) and holdFlags['alt'] and holdFlags['ctrl'] and holdFlags['tag'] and holdFlags['shift']): onControlAltTag()
         # if (isRelease(event) and holdFlags['alt'] and holdFlags['ctrl'] and holdFlags['tag']): onControlAltTag()
 
-        if (isRelease(event) and holdFlags['alt'] and holdFlags['ctrl'] and holdFlags['a']): onControlAltA()
+        # if (isRelease(event) and holdFlags['alt'] and holdFlags['ctrl'] and holdFlags['a']): onControlAltA()
 
-        # flag if a is pressed
-        if (isA(event)): setHoldingFlag('a', isPress(event))
+        # # flag if a is pressed
+        # if (isA(event)): setHoldingFlag('a', isPress(event))
         # flag if alt is pressed
         if (isAlt(event)): setHoldingFlag('alt', isPress(event))
         # flag if ctrl is pressed
         if (isCtrl(event)): setHoldingFlag('ctrl', isPress(event))
-        # flag if ctrl a is pressed
-        if (isCtrlA(event)): setHoldingFlags(['ctrl', 'a'], isPress(event))
-        # flag if ctrl alt a is pressed
-        if (isCtrlAltA(event)): setHoldingFlags(['ctrl', 'alt', 'a'], isPress(event))
+        # # flag if ctrl a is pressed
+        # if (isCtrlA(event)): setHoldingFlags(['ctrl', 'a'], isPress(event))
+        # # flag if ctrl alt a is pressed
+        # if (isCtrlAltA(event)): setHoldingFlags(['ctrl', 'alt', 'a'], isPress(event))
 
-        # # flag if shift is pressed
-        # if (isShift(event)): setHoldingFlag('shift', isPress(event))
-        # # flag if ctrl tag is pressed
-        # if (isCtrlTag(event)): setHoldingFlags(['ctrl', 'tag'], isPress(event))
-        # # flag if tag is pressed
-        # if (isTag(event)): setHoldingFlag('tag', isPress(event))
+        # flag if shift is pressed
+        if (isShift(event)): setHoldingFlag('shift', isPress(event))
+        # flag if ctrl tag is pressed
+        if (isCtrlTag(event)): setHoldingFlags(['ctrl', 'tag'], isPress(event))
+        # flag if tag is pressed
+        if (isTag(event)): setHoldingFlag('tag', isPress(event))
         # # count continous presses of F11
         # updateSequentialClick('F11', isF11, event)
         # updateSequentialClick('F12', isF12, event)

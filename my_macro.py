@@ -21,6 +21,8 @@ holdFlags = {
     'tag': False, 
     'a': False,
     'd': False,
+    'e': False,
+    'w': False,
     }
 sequentialClicks = {
     'F11': 0, 
@@ -104,6 +106,8 @@ def isPress(e):     return not isRelease(e)
 
 def isA(event):         return '\'a\'' in str(event) 
 def isD(event):         return '\'d\'' in str(event) 
+def isE(event):         return '\'e\'' in str(event) 
+def isW(event):         return '\'w\'' in str(event) 
 def isTag(event):       return tag in str(event) 
 def isCtrlTag(event):   return ctrl_tag in str(event)
 def isCtrlA(event):     return ctrl_a in str(event)
@@ -120,7 +124,9 @@ def isF12(event):       return event.key == Key.f12
 def openLink(url):
     webbrowser.open(url)
     time.sleep(0.3)
-def openOnedriveDesktop(): openLink(r'C:\Users\User\OneDrive\שולחן העבודה')
+def openOnedriveDesktopDir(): openLink(r'C:\Users\User\OneDrive\שולחן העבודה')
+def openUniversityDir():      openLink(r'C:\CazeMattan\University')
+def openWslDir():             openLink(r'\\wsl.localhost\Ubuntu\home\opsidezi\University')
 def openChrome(): openLink('HTTP:')
 def openMoodle():    openLink('https://moodle.bgu.ac.il/moodle/local/mydashboard/')
 def openMyButtons(): 
@@ -184,7 +190,15 @@ def onControlShiftA():
     resetHoldingFlags()
 
 def onAltCmdD():
-    openOnedriveDesktop()
+    openOnedriveDesktopDir()
+    resetHoldingFlags()
+
+def onAltCmdE():
+    openUniversityDir()
+    resetHoldingFlags()
+
+def onAltCmdW():
+    openWslDir()
     resetHoldingFlags()
 
 def onF11Trice():
@@ -224,11 +238,17 @@ with keyboard.Events() as events:
         if (isRelease(event) and holdFlags['alt'] and holdFlags['ctrl'] and holdFlags['tag']): onControlAltTag()
         if (isRelease(event) and holdFlags['shift'] and holdFlags['ctrl'] and holdFlags['a']): onControlShiftA()
         if (isRelease(event) and holdFlags['alt'] and holdFlags['d'] and holdFlags['cmd']): onAltCmdD()
+        if (isRelease(event) and holdFlags['alt'] and holdFlags['e'] and holdFlags['cmd']): onAltCmdE()
+        if (isRelease(event) and holdFlags['alt'] and holdFlags['w'] and holdFlags['cmd']): onAltCmdW()
 
         # flag if a is pressed
         if (isA(event)): setHoldingFlag('a', isPress(event))
         # flag if a is pressed
         if (isD(event)): setHoldingFlag('d', isPress(event))
+        # flag if a is pressed
+        if (isE(event)): setHoldingFlag('e', isPress(event))
+        # flag if a is pressed
+        if (isW(event)): setHoldingFlag('w', isPress(event))
         # flag if a is pressed
         if (isCmd(event)): setHoldingFlag('cmd', isPress(event))
         # flag if shift is pressed

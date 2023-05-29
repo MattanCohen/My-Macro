@@ -132,8 +132,8 @@ def openMyButtons():
         return
     openLink('https://opsidezi.wixsite.com/my-useful-links')
 
-def login(n):
-    for i in range(n): tap(Key.tab)
+def login():
+    for i in range(7): tap(Key.tab)
     tap(Key.enter)
 
 def loginSameWindow():
@@ -152,18 +152,13 @@ def loginSameWindow():
     closeTab(1)
 
 def loginNewWindow():
-    openedChrome = False
-    if (not isChromeRunning()): 
-        openMyButtons()
-        openedChrome = True
+    if (not isChromeRunning()): openMyButtons()
     openChrome()
     time.sleep(0.2)
     openMoodle()
-    time.sleep(1.5)
-    if openedChrome: n = 5 
-    else: n = 9
-    login(n)
-    time.sleep(3)
+    time.sleep(0.5)
+    login()
+    time.sleep(2.6)
     closeWindow()
 
 
@@ -173,13 +168,11 @@ def onControlAltTag():
     # reset holdFlags
     resetHoldingFlags()
 
-def onControlShiftA():
-    tapWithCtrl('w')
+def onControlAltA():
+    tapWithCtrl(Key.f4)
     tapWithShift(Key.f10)
-    k = Controller()
-    time.sleep(0.2)
     for i in range(3):
-        k.tap(Key.down)
+        tap(Key.down)
     tap(Key.enter)
     resetHoldingFlags()
 
@@ -222,7 +215,7 @@ with keyboard.Events() as events:
 # ----------------------------------------------------
         # check if alt ctrl tag is pressed
         if (isRelease(event) and holdFlags['alt'] and holdFlags['ctrl'] and holdFlags['tag']): onControlAltTag()
-        if (isRelease(event) and holdFlags['shift'] and holdFlags['ctrl'] and holdFlags['a']): onControlShiftA()
+        if (isRelease(event) and holdFlags['alt'] and holdFlags['ctrl'] and holdFlags['a']): onControlAltA()
         if (isRelease(event) and holdFlags['alt'] and holdFlags['d'] and holdFlags['cmd']): onAltCmdD()
 
         # flag if a is pressed

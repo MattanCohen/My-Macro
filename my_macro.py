@@ -165,9 +165,12 @@ def loginNewWindow():
     openChrome()
     time.sleep(0.2)
     openMoodle()
-    time.sleep(1.5)
-    if openedChrome: n = 5 
-    else: n = 9
+    if openedChrome and isChromeRunning(): 
+        time.sleep(1.5)
+        n = 8 
+    else: 
+        time.sleep(1.5)
+        n = 9
     login(n)
     time.sleep(3)
     closeWindow()

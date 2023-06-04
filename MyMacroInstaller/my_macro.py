@@ -138,23 +138,21 @@ def loginSameWindow():
     closeTab(1)
 
 def loginNewWindow():
-    if (not isChromeRunning()): openChrome()
+    openedChrome = False
+    if (not isChromeRunning()): 
+        openChrome()
+        openedChrome = True
     openChrome()
-    time.sleep(1)
+    time.sleep(0.2)
     openMoodle()
-    # wait for moodle to load in background
-    moveWindow()
+    time.sleep(1.5)
+    if openedChrome and isChromeRunning(): 
+        n = 8 
+    else: 
+        n = 9
+    login(n)
     time.sleep(3)
-    # login afte moodle loaded
-    moveWindow()
-    time.sleep(3)
-    login()
-    # wait for login submission to register and then close tab
-    moveWindow()
-    time.sleep(3)
-    moveWindow()
     closeWindow()
-
 
 def onControlAltTag():
     if holdFlags['shift']: loginNewWindow()

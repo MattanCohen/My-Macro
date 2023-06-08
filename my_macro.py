@@ -157,6 +157,7 @@ def loginSameWindow():
     time.sleep(4)
     closeTab(1)
 
+
 def loginNewWindow():
     openedChrome = False
     if (not isChromeRunning()): 
@@ -165,11 +166,10 @@ def loginNewWindow():
     openChrome()
     time.sleep(0.2)
     openMoodle()
+    time.sleep(1.5)
     if openedChrome and isChromeRunning(): 
-        time.sleep(1.5)
-        n = 8 
+        n = 10 
     else: 
-        time.sleep(1.5)
         n = 9
     login(n)
     time.sleep(3)

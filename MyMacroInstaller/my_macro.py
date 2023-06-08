@@ -118,8 +118,8 @@ def openChrome(): openLink('HTTP:')
 def openMoodle():    openLink('https://moodle.bgu.ac.il/moodle/local/mydashboard/')
 def openMyButtons(): openLink('https://opsidezi.wixsite.com/my-useful-links')
 
-def login():
-    for i in range(9): tap(Key.tab)
+def login(n):
+    for i in range(n): tap(Key.tab)
     tap(Key.enter)
 
 def loginSameWindow():
@@ -147,7 +147,7 @@ def loginNewWindow():
     openMoodle()
     time.sleep(1.5)
     if openedChrome and isChromeRunning(): 
-        n = 8 
+        n = 10 
     else: 
         n = 9
     login(n)
